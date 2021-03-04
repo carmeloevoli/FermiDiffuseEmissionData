@@ -76,3 +76,14 @@ Start value for first energy bin in MeV[] 100
 Stop value for last energy bin in MeV[] 1000000
 Number of logarithmically uniform energy bins[] 64
 ```
+
+- calculated integrated livetime *whatever that means* as a function of sky position
+
+```
+gtltcube zmax = 105                                                                                                                                                                                                                                                            Event data file[myevents_fermi_healpix.fits] myevents_fermi.fits 
+Spacecraft data file[L2102260113087E6D776947_SC00.fits] 
+Output file[ltcube.fits] myltcube.fits
+Step size in cos(theta) (0.:1.) [0.025] 
+Pixel size (degrees)[1] 
+Working on file L2102260113087E6D776947_SC00.fits
+```
