@@ -84,6 +84,29 @@ gtltcube zmax = 105                                                             
 Spacecraft data file[] L2102260113087E6D776947_SC00.fits 
 Output file[] myltcube.fits
 Step size in cos(theta) (0.:1.) [0.025] 
-Pixel size (degrees)[1] 
+Pixel size (degrees)[1]
 Working on file L2102260113087E6D776947_SC00.fits
 ```
+
+***Pixel size (degrees)[1] is this OK?***
+
+- computed the binsize as: 
+
+```
+NSide = 2.**order
+NPixels = 12. * nside * nside
+PixelAreaRad = 4. * 3.14 / npixels # in rad^2
+PixelAreaDeg = (180. / 3.14)**2. * PixelAreaRad # in deg^2
+```
+
+- generated the exposure map with `gtexpcube2`:
+
+```
+gtexpcube2 bincalc=CENTER, coordsys=GAL, binsz=0.23
+Livetime cube file[] myltcube.fits
+Counts map file[] myevents_fermi_healpix.fits
+Output file name[] myexpcube.fits
+```
+
+***The energy axis must be the same as in gtbin***
+***NBins 64 is too much?***
