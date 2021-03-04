@@ -108,5 +108,6 @@ Counts map file[] myevents_fermi_healpix.fits
 Output file name[] myexpcube.fits
 ```
 
-***The energy axis must be the same as in gtbin***
+***The energy axis must be the same as in gtbin?***
+
 ***NBins 64 is too much?***
