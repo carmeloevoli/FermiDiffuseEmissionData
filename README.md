@@ -54,7 +54,7 @@ Spacecraft data file[] L2102260113087E6D776947_SC00.fits
 Filter expression[DATA_QUAL>0 && LAT_CONFIG==1 && ABS(ROCK_ANGLE)<52] 
 Apply ROI-based zenith angle cut[yes] no
 Event data file[] lat_alldata.fits
-Output event file name[] myevents_fermi.fits
+Output event file name[] events.fits
 ```
 
 - and binned in log energy axis:
