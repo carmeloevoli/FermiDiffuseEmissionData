@@ -86,8 +86,6 @@ Step size in cos(theta) (0.:1.) [0.025]
 Pixel size (degrees)[1]
 ```
 
-***Pixel size (degrees)[1] is this OK?***
-
 - computed the binsize as: 
 
 ```
