@@ -98,12 +98,8 @@ PixelAreaDeg = (180. / 3.14)**2. * PixelAreaRad # in deg^2
 - generated the exposure map with `gtexpcube2`:
 
 ```
-gtexpcube2 bincalc=CENTER, coordsys=GAL, binsz=0.23
-Livetime cube file[] myltcube.fits
-Counts map file[] myevents_fermi_healpix.fits
-Output file name[] myexpcube.fits
+gtexpcube2  bincalc=CENTER, coordsys=GAL, binsz=0.23                                                                                                                                                                                                                          Livetime cube file[] expCube.fits 
+Counts map file[] events_binned_healpix.fits
+Output file name[] exposure.fits
+Response functions to use[CALDB] P8R3_CLEAN_V3
 ```
-
-***The energy axis must be the same as in gtbin?***
-
-***NBins 64 is too much?***
