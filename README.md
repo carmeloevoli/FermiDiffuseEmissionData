@@ -31,18 +31,18 @@ conda list fermi
 ```
 gtselect evclass=256 evtype=3 
 Input FT1 file[] events.txt
-Output FT1 file[] lat_alldata.fits
+Output FT1 file[] alldata.fits
 RA for new search center (degrees) (0:360) [INDEF] 0
 Dec for new search center (degrees) (-90:90) [INDEF] 0
 radius of new search region (degrees) (0:180) [INDEF] 180
-start time (MET in s) (0:) [INDEF] INDEF
-end time (MET in s) (0:) [INDEF] INDEF
-lower energy limit (MeV) (0:) [] 30
-upper energy limit (MeV) (0:) [] 300000
+start time (MET in s) (0:) [INDEF] 
+end time (MET in s) (0:) [INDEF] 
+lower energy limit (MeV) (0:) [30]
+upper energy limit (MeV) (0:) [300000]
 maximum zenith angle value (degrees) (0:180) [] 105
 ```
 
-- ***See the suggested parameters [here](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data_Exploration/Data_preparation.html)*** ***for Diffuse Analysis the evclass should be 128!***
+- See the suggested parameters [here](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data_Exploration/Data_preparation.html)
 
 - Note that evtype=3 stands for FRONT+BACK event types
 
