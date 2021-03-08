@@ -1,4 +1,4 @@
-# FermiData
+# My scripts to analyze Fermi data for Diffuse Emission analysis
 
 - I downloaded all data files in a temporary directory with:
 
