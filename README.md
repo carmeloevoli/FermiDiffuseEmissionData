@@ -26,7 +26,7 @@ conda list fermi
 
 `ls photon/lat_photon_weekly_w* > events.txt`
 
-- combined the data files:
+- combined the data files and applied some selection cuts with [gtselect](https://raw.githubusercontent.com/fermi-lat/fermitools-fhelp/master/gtselect.txt):
 
 ```
 gtselect evclass=256 evtype=3
@@ -46,7 +46,7 @@ maximum zenith angle value (degrees) (0:180) [] 105
 
 - Note that evtype=3 stands for FRONT+BACK event types
 
-- selected from all events those which fall into periods where data quality is good:
+- selected from all events those which fall into periods where data quality is good with [gtmktime](https://raw.githubusercontent.com/fermi-lat/fermitools-fhelp/master/gtmktime.txt):
 
 ```
 gtmktime
