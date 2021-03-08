@@ -29,16 +29,16 @@ conda list fermi
 - combined the data files:
 
 ```
-gtselect evclass=256 evtype=3 infile=events.txt outfile=allevents.fits ra=0 dec=0 rad=180 tmin=0 tmax=0 emin=1e2 emax=1e5 zmax=105
+gtselect evclass=256 evtype=3
 Input FT1 file[] events.txt
-Output FT1 file[] alldata.fits
+Output FT1 file[] allevents.fits
 RA for new search center (degrees) (0:360) [INDEF] 0
 Dec for new search center (degrees) (-90:90) [INDEF] 0
 radius of new search region (degrees) (0:180) [INDEF] 180
-start time (MET in s) (0:) [INDEF] 
-end time (MET in s) (0:) [INDEF] 
-lower energy limit (MeV) (0:) [30]
-upper energy limit (MeV) (0:) [300000]
+start time (MET in s) (0:) [INDEF] 0
+end time (MET in s) (0:) [INDEF] 0 
+lower energy limit (MeV) (0:) [30] 3e2
+upper energy limit (MeV) (0:) [300000] 3e5
 maximum zenith angle value (degrees) (0:180) [] 105
 ```
 
