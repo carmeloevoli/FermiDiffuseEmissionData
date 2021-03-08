@@ -29,7 +29,7 @@ conda list fermi
 - combined the data files:
 
 ```
-gtselect evclass=256 evtype=3 
+gtselect evclass=256 evtype=3 infile=events.txt outfile=allevents.fits ra=0 dec=0 rad=180 tmin=0 tmax=0 emin=1e2 emax=1e5 zmax=105
 Input FT1 file[] events.txt
 Output FT1 file[] alldata.fits
 RA for new search center (degrees) (0:360) [INDEF] 0
@@ -55,6 +55,12 @@ Filter expression[DATA_QUAL>0 && LAT_CONFIG==1 && ABS(ROCK_ANGLE)<52]
 Apply ROI-based zenith angle cut[yes] no
 Event data file[] lat_alldata.fits
 Output event file name[] events.fits
+```
+
+- some debug on the parameters
+
+```
+gtvcut suppress_gtis=no infile=events.fits table=EVENTS 
 ```
 
 - and binned in log energy axis:
