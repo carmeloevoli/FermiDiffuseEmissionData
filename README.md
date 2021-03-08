@@ -68,18 +68,18 @@ gtvcut suppress_gtis=no infile=events.fits table=EVENTS
 ```
 gtbin
 Type of output file (CCUBE|CMAP|LC|PHA1|PHA2|HEALPIX) [PHA2] HEALPIX
-Event data file name[] events.fits
+Event data file name[] goodevents.fits
 Output file name[] events_binned_healpix.fits
-Spacecraft data file name[NONE] L2102260113087E6D776947_SC00.fits
+Spacecraft data file name[NONE] L210308090221F1395D3E06_SC00.fits
 Ordering Scheme (RING|NESTED) [RING] NESTED
 Order of the map (int between 0 and 12, included)[3] 8
 Coordinate system (CEL - celestial, GAL -galactic) (CEL|GAL) [CEL] GAL
 Region, leave empty for all-sky[] 
 Do you want Energy binning ?[yes] yes
 Algorithm for defining energy bins (FILE|LIN|LOG) [LOG] LOG
-Start value for first energy bin in MeV[30] 
-Stop value for last energy bin in MeV[200000] 
-Number of logarithmically uniform energy bins[] 12
+Start value for first energy bin in MeV[] 3e2 
+Stop value for last energy bin in MeV[] 3e5 
+Number of logarithmically uniform energy bins[] 15
 ```
 
 - calculated integrated livetime *whatever that means* as a function of sky position
