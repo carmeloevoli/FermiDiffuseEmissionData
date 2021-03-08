@@ -50,11 +50,11 @@ maximum zenith angle value (degrees) (0:180) [] 105
 
 ```
 gtmktime
-Spacecraft data file[] L2102260113087E6D776947_SC00.fits
+Spacecraft data file[] L210308090221F1395D3E06_SC00.fits
 Filter expression[DATA_QUAL>0 && LAT_CONFIG==1 && ABS(ROCK_ANGLE)<52] 
 Apply ROI-based zenith angle cut[yes] no
-Event data file[] lat_alldata.fits
-Output event file name[] events.fits
+Event data file[] allevents.fits
+Output event file name[] goodevents.fits
 ```
 
 - some debug on the parameters
