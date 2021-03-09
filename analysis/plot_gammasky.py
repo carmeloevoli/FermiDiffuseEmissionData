@@ -83,9 +83,13 @@ def plotFluxMap(eventsFilename, exposureFilename, iE):
 
 ### MAiN ###
 
-iE = 5
+E_down, E_up, E_size = readEnergyBins("weekly/events_binned_healpix.fits")
 
-plotCountMap("weekly/events_binned_healpix.fits", iE)
+for iE in range(E_size):
+    plotCountMap("weekly/events_binned_healpix.fits", iE)
+    E_center = np.sqrt(E_down[iE] * E_up[iE]) / 1e3
+    print ("%9.2f" % E_center)
+
 #plotExposureMap("weekly/exposure.fits", iE)
 #fluxmap = plotFluxMap("weekly/events_binned_healpix.fits", "weekly/exposure.fits", iE)
 #computeIntegratedFlux(fluxmap, E)
