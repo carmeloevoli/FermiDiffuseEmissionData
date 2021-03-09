@@ -57,3 +57,16 @@ def computeSourceMask(nside, nest=False):
     pixx = hp.pixelfunc.ang2pix(nside=nside, theta=sourceLon, phi=sourceLat, lonlat=True, nest=nest)
     sourceMask[pixx] = 0.
     return sourceMask
+
+def computeInnerGalaxyMask(nside, nest=False):
+    npixels = computeNpixels(nside)
+    mask = np.zeros(npixels)
+    for i in range(npixels):
+        theta, phi = hp.pixelfunc.pix2ang(nside, i, lonlat=True)
+        if (abs(theta) < 80. or abs(theta) > 280.) and abs(phi) < 8.:
+            mask[i] = 1.0
+    return mask
+
+def plotPoints(ax, x, y, xerr, yerr, color, label, fmt):
+    ax.errorbar(x, y, xerr=xerr, yerr=yerr, fmt=fmt, markersize=7, elinewidth=2, capsize=4, capthick=2,
+                markeredgecolor=color, color=color, label=label, zorder=1)
