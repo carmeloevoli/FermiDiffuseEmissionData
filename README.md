@@ -93,16 +93,9 @@ Step size in cos(theta) (0.:1.) [0.025]
 Pixel size (degrees)[1]
 ```
 
-- computed the binsize as: 
+- computed the binsize as [here](https://github.com/carmeloevoli/FermiDiffuseEmissionData/blob/main/analysis/pixel.py) 
 
-```
-NSide = 2.**order
-NPixels = 12. * nside * nside
-PixelAreaRad = 4. * 3.14 / npixels # in rad^2
-PixelAreaDeg = (180. / 3.14)**2. * PixelAreaRad # in deg^2
-```
-
-- generated the exposure map with `gtexpcube2`:
+- generated the exposure map with [gtexpcube2](https://raw.githubusercontent.com/fermi-lat/fermitools-fhelp/master/gtexpcube2.txt):
 
 ```
 gtexpcube2 emin=30 emax=3e5 enumbins=12 bincalc=CENTER binsz=0.23 coordsys=GAL hpx_order=8 hpx_ordering_scheme=NESTED
