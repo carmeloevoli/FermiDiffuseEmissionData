@@ -85,8 +85,8 @@ Number of logarithmically uniform energy bins[] 15
 - calculated integrated livetime *whatever that means* as a function of sky position
 
 ```
-gtltcube zmax = 105                                                                                                                                                                                                                                                            Event data file[] events.fits 
-Spacecraft data file[] L2102260113087E6D776947_SC00.fits 
+gtltcube zmax = 105                                                                                                                                                                                                                                                            Event data file[] goodevents.fits 
+Spacecraft data file[] L210308090221F1395D3E06_SC00.fits 
 Output file[expCube.fits]
 Step size in cos(theta) (0.:1.) [0.025] 
 Pixel size (degrees)[1]
