@@ -70,3 +70,21 @@ def computeInnerGalaxyMask(nside, nest=False):
 def plotPoints(ax, x, y, xerr, yerr, color, label, fmt):
     ax.errorbar(x, y, xerr=xerr, yerr=yerr, fmt=fmt, markersize=7, elinewidth=2, capsize=4, capthick=2,
                 markeredgecolor=color, color=color, label=label, zorder=1)
+
+def computeMeanMap(map, mask):
+    counter = 0
+    value = 0.
+    for map_i, mask_i in zip(map, mask):
+        if mask_i > 0.:
+            value += map_i
+            counter += 1
+    return value / float(counter)
+
+def computeStatisticalError(counts, mask):
+    counter = 0
+    value = 0.
+    for counts_i, mask_i in zip(counts, mask):
+        if mask_i > 0.:
+            value += counts_i
+            counter += 1
+    return 3. * np.sqrt(value) / value

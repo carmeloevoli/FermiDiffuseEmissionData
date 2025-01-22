@@ -3,7 +3,11 @@ matplotlib.use('MacOSX')
 import matplotlib.pyplot as plt
 plt.style.use('./gammasky.mplstyle')
 import numpy as np
+
 import gammalib as gl
+
+COUNTSFILENAME = "data/events_binned_healpix.fits"
+EXPOSUREFILENAME = "data/exposure.fits"
 
 def set_axis(ax):
     ax.set_xscale('log')
@@ -13,68 +17,50 @@ def set_axis(ax):
     ax.set_ylabel(r'$E_\gamma^2 J_\gamma$ [MeV cm$^{-2}$ s$^{-1}$ sr$^{-1}$]')
     ax.set_ylim([1e-3, 5e-2])
 
-def computeMeanMap(map, mask):
-    counter = 0
-    value = 0.
-    for map_i, mask_i in zip(map, mask):
-        if mask_i > 0.:
-            value += map_i
-            counter += 1
-    return value / float(counter)
+def plot_innergalaxy_mask():
+    nside = gl.readNSide(COUNTSFILENAME)
+    mask = gl.computeInnerGalaxyMask(nside)
+    gl.plotMap(mask, "mask", "Inner Galaxy")
+    plt.savefig("inner_galaxy_mask.pdf")
 
-def computeStatisticalError(counts, mask):
-    counter = 0
-    value = 0.
-    for counts_i, mask_i in zip(counts, mask):
-        if mask_i > 0.:
-            value += counts_i
-            counter += 1
-    return 3. * np.sqrt(value) / value
+def plot_spectrum():
+    E_down, E_up, E_size = gl.readEnergyBins(COUNTSFILENAME)
+    E_center = np.sqrt(E_down * E_up)
+    Delta_E = E_up - E_down
 
-filenameCounts = "data/events_binned_healpix.fits"
-filenameExposure = "data/exposure.fits"
+    nside = gl.readNSide(COUNTSFILENAME)
+    pixelArea = gl.pixelSolidAngle(nside)
 
-E_down, E_up, E_size = gl.readEnergyBins(filenameCounts)
-E_center = np.sqrt(E_down * E_up)
-Delta_E = E_up - E_down
+    sourcemask = gl.computeSourceMask(nside)
+    mask = gl.computeInnerGalaxyMask(nside)
+    
+    countmaps = gl.readMaps(COUNTSFILENAME, E_size)
 
-nside = gl.readNSide(filenameCounts)
-pixelArea = gl.pixelSolidAngle(nside)
+    assert(E_size == gl.readEnergyNumBins(EXPOSUREFILENAME))
+    exposures = gl.readMaps(EXPOSUREFILENAME, E_size)
 
-sourcemask = gl.computeSourceMask(nside)
-mask = gl.computeInnerGalaxyMask(nside)
+    flux, flux_relative_err = np.zeros(E_size), np.zeros(E_size)
 
-#gl.plotMap(mask, "mask", "Inner Galaxy")
-#plt.savefig("InnerGalaxy.png")
+    for i in range(E_size):
+        counts = countmaps[i]
+        exposure =  exposures[i]
+        map = counts / pixelArea / exposure / Delta_E[i]
+        flux[i] = gl.computeMeanMap(map, mask * sourcemask)
+        flux_relative_err[i] = gl.computeStatisticalError(counts, mask * sourcemask)
 
-countmaps = gl.readMaps(filenameCounts, E_size)
+    fig = plt.figure(figsize=(10.5,8))
+    ax = fig.add_subplot(111)
+    set_axis(ax)
 
-assert(E_size == gl.readEnergyNumBins(filenameExposure))
-exposures = gl.readMaps(filenameExposure, E_size)
+    xerr_up = E_up - E_center
+    xerr_do = E_center - E_down
+    yerr = E_center**2.0 * flux * flux_relative_err
 
-flux = np.zeros(E_size)
-flux_err = np.zeros(E_size)
+    gl.plotPoints(ax, E_center, E_center**2.0 * flux, [xerr_do, xerr_up], yerr, 'tab:red', 'PASS-8', 'o')
 
-for i in range(E_size):
-    counts = countmaps[i]
-    exposure =  exposures[i]
-    map = counts / pixelArea / exposure / Delta_E[i]
-    flux[i] = computeMeanMap(map, mask * sourcemask)
-    flux_relative_err[i] = computeStatisticalError(counts, mask * sourcemask)
+    ax.set_title('Inner Galaxy')
+    plt.savefig('inner_galaxy_spectrum.pdf')
 
-print (flux_relative_err)
-
-fig = plt.figure(figsize=(10.5,8))
-ax = fig.add_subplot(111)
-set_axis(ax)
-
-xerr_up = E_up - E_center
-xerr_do = E_center - E_down
-
-yerr =  E_center**2.0 * flux * flux_relative_err
-
-gl.plotPoints(ax, E_center, E_center**2.0 * flux, [xerr_do, xerr_up], yerr, 'tab:red', 'PASS-8', 'o')
-
-ax.set_title('Inner Galaxy')
-
-plt.savefig('innergalaxy_spectrum.pdf')
+if __name__== "__main__":
+    plot_innergalaxy_mask()
+    plot_spectrum()
